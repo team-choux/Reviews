@@ -115,40 +115,40 @@ let getSpecificProductMeta = function (request, response) {
         };
 
         return db.any(`select * from meta_characteristics where product_id=${productId}`);
-      })
-      .then((rowsFromMetaChar)=>{
-        let characteristics = {};
-
-        for (var i = 0; i < rowsFromMetaChar.length; i++) {
-          //due to how the database was created ...CHAR was used instead of VARCHAR (this has been fixed in the schema files for future imports)
-          let characteristicName = rowsFromMetaChar[i].name.trim();
-
-          if (characteristics.hasOwnProperty(characteristicName)) {
-            characteristics[characteristicName].counter++;
-            characteristics[characteristicName].total += rowsFromMetaChar[i].value;
-          } else {
-            characteristics[characteristicName] = {
-              'id': rowsFromMetaChar[i].id,
-              'value': null,
-              'total': rowsFromMetaChar[i].value,
-              'counter': 1
-            };
-          }
-        }
-
-        //this part calculates value which an average of the ratings for each category (total ratings/number ratings per category)
-        for (var key in characteristics) {
-          characteristics[key].value = characteristics[key].total / characteristics[key].counter;
-          delete characteristics[key].total;
-          delete characteristics[key].counter;
-        }
-        metaData.characteristics = characteristics;
-        response.send(metaData);
-      })
-      .catch(function(err) {
-        console.log('error in getSpecificProductMeta in connectionPostgresQueries.js');
-        response.send(err);
       });
+    // .then((rowsFromMetaChar)=>{
+    //   let characteristics = {};
+
+    //   for (var i = 0; i < rowsFromMetaChar.length; i++) {
+    //     //due to how the database was created ...CHAR was used instead of VARCHAR (this has been fixed in the schema files for future imports)
+    //     let characteristicName = rowsFromMetaChar[i].name.trim();
+
+    //     if (characteristics.hasOwnProperty(characteristicName)) {
+    //       characteristics[characteristicName].counter++;
+    //       characteristics[characteristicName].total += rowsFromMetaChar[i].value;
+    //     } else {
+    //       characteristics[characteristicName] = {
+    //         'id': rowsFromMetaChar[i].id,
+    //         'value': null,
+    //         'total': rowsFromMetaChar[i].value,
+    //         'counter': 1
+    //       };
+    //     }
+    //   }
+
+    //   //this part calculates value which an average of the ratings for each category (total ratings/number ratings per category)
+    //   for (var key in characteristics) {
+    //     characteristics[key].value = characteristics[key].total / characteristics[key].counter;
+    //     delete characteristics[key].total;
+    //     delete characteristics[key].counter;
+    //   }
+    //   metaData.characteristics = characteristics;
+    //   response.send(metaData);
+    // })
+    // .catch(function(err) {
+    //   console.log('error in getSpecificProductMeta in connectionPostgresQueries.js');
+    //   response.send(err);
+    // });
   } else {
     response.send('Product ID must be defined');
   }

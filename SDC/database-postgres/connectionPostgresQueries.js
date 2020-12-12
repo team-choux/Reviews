@@ -114,7 +114,7 @@ let getSpecificProductMeta = function (request, response) {
           }
         };
 
-        return db.any(`select * from meta_characteristics where product_id=${productId}`);
+        //return db.any(`select * from meta_characteristics where product_id=${productId}`);
       });
     // .then((rowsFromMetaChar)=>{
     //   let characteristics = {};

@@ -23,7 +23,8 @@ router.get('/reviews/', dbQueries.getSpecificProductReviews);
 router.get('/reviews/meta', dbQueries.getSpecificProductMeta);
 
 router.get('/loaderio-5797b2ffb52126113b3da316548159f7', (req, res) => {
-  res.send('loader should be here');
+
+  res.send('loaderio-5797b2ffb52126113b3da316548159f7');
 });
 
 

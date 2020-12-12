@@ -18,6 +18,7 @@ router.get('/test', (req, res) => {
 
 router.get('/test2', dbQueries.getTest);
 router.get('loaderio-5797b2ffb52126113b3da316548159f7', (req, res) => {
+  const verification = require('../../loader.txt');
   res.send('loaderio-5797b2ffb52126113b3da316548159f7');
 });
 

@@ -113,7 +113,7 @@ let getSpecificProductMeta = function (request, response) {
             }
           }
         };
-
+        response.send(metaData);
         //return db.any(`select * from meta_characteristics where product_id=${productId}`);
       });
     // .then((rowsFromMetaChar)=>{

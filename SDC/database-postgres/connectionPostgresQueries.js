@@ -83,6 +83,11 @@ let getSpecificProductReviews = function (request, response, next) {
   }
 };
 
+let getTest = function(request, response) {
+  db.any('select * from meta limit 10')
+    .then((result)=>{ response.send(result); })
+    .catch((err)=> { response.send(err); } );
+};
 
 let getSpecificProductMeta = function (request, response) {
   if (request.query.hasOwnProperty('product_id')) {
@@ -159,10 +164,9 @@ let getSpecificProductMeta = function (request, response) {
 };
 
 
-
-
 module.exports = {
   db: db,
+  getTest: getTest,
   getSpecificProductReviews: getSpecificProductReviews,
   getSpecificProductMeta: getSpecificProductMeta,
 

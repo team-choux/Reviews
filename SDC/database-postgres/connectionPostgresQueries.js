@@ -85,7 +85,10 @@ let getSpecificProductReviews = function (request, response, next) {
 
 let getTest = function(request, response) {
   db.any('select * from meta limit 10')
-    .then((result)=>{ response.send(result); })
+    .then((result)=>{
+      console.log(result);
+      response.send(result);
+    })
     .catch((err)=> { response.send(err); } );
 };
 

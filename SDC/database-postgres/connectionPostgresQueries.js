@@ -115,6 +115,10 @@ let getSpecificProductMeta = function (request, response) {
         };
         response.send(metaData);
         //return db.any(`select * from meta_characteristics where product_id=${productId}`);
+      })
+      .catch(function(err) {
+        console.log('error in getSpecificProductMeta in connectionPostgresQueries.js');
+        response.send(err);
       });
     // .then((rowsFromMetaChar)=>{
     //   let characteristics = {};
